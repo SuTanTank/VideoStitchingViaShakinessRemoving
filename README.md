@@ -2,8 +2,7 @@
 
 Demo code and example inputs for the works below:
  - Nie, Yongwei, et al. "Dynamic Video Stitching via Shakiness Removing." IEEE Transactions on Image Processing 27.1 (2018): 164-178.
- - Su, Tan, et al. "Video stitching for handheld inputs via combined video stabilization." SIGGRAPH ASIA 2016 Technical Briefs. ACM, 
- 2016. 
+ - Su, Tan, et al. "Video stitching for handheld inputs via combined video stabilization." SIGGRAPH ASIA 2016 Technical Briefs. ACM, 2016. 
  
 ## External libraries and code used
  - vlfeat: http://www.vlfeat.org/
