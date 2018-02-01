@@ -6,15 +6,19 @@ Demo code and example inputs for the works below:
  2016. 
  
 ## External libraries and code used
+ - Shankar Rao's Motion Segmentation Code: http://perception.csl.illinois.edu/coding/motion/#Software
+ - CVX: http://cvxr.com/cvx/
  - vlfeat: http://www.vlfeat.org/
  - peter kovesi matlab toolbox: http://www.peterkovesi.com/matlabfns/
  - Liu Shuaicheng's As-similar-as-possible Warping code: http://www.liushuaicheng.org/SIGGRAPH2013/index.htm
  
 ## How to use this demo code
 
-1. In file fodler '/case-cuhk_lib', extract video frames of case17-l.mp4 to folder '/left', and extract video frames of case17-r.mp4 to folder '/right'. After the frame extracation, each folder should contain 400 png files. 
+1. In file fodler '/case-cuhk_lib', extract video frames of case17-l.mp4 to folder '/left', and extract video frames of case17-r.mp4 to folder '/right'. After the frame extracation, each folder should contain 400 png files. The file names shoudl be indexed properly. (e.g. 001.png 002.png ...)
 
-2. In folder '/Stitching-1.1.0', run RunStitching.m
+2. You may need to install CVX. 
+
+3. Set MATLAB path to '/Stitching-1.1.0', run RunStitching.m
 
 For more details, please read the comments
 
