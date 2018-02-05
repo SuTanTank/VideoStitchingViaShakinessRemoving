@@ -3,7 +3,7 @@
 Demo code and example inputs for the works below:
  - Nie, Yongwei, et al. "Dynamic Video Stitching via Shakiness Removing." IEEE Transactions on Image Processing 27.1 (2018): 164-178.
  - Su, Tan, et al. "Video stitching for handheld inputs via combined video stabilization." SIGGRAPH ASIA 2016 Technical Briefs. ACM, 2016. 
- 
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/IDzFvqRb40Y/0.jpg)](https://youtu.be/IDzFvqRb40Y) 
 ## External libraries and code used
  - Shankar Rao's Motion Segmentation Code: http://perception.csl.illinois.edu/coding/motion/#Software
  - CVX: http://cvxr.com/cvx/
