@@ -1,5 +1,5 @@
-.asv
-.png
-.bmp
-.jpg
-.mat
+*.png
+*.mat
+*.asv
+*.jpg
+*.bmp
