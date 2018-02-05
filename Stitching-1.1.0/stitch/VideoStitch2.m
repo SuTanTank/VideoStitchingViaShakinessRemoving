@@ -61,7 +61,7 @@ classdef VideoStitch2 < handle
     end
     
     methods
-        function obj = VideoStitch2(seqA, seqB, pathA, pathB, ControlPoints, ppf, UseImageSeq, smoothness, cropping, stitchness)
+        function obj = VideoStitch2(seqA, seqB, pathA, pathB, ControlPoints, ppf, smoothness, cropping, stitchness)
             obj.seqA = seqA;
             obj.seqB = seqB;
             obj.Ca = pathA;
@@ -76,25 +76,20 @@ classdef VideoStitch2 < handle
             obj.span = 30;
             obj.H = eye(3);
             obj.Offset = eye(3);
-            if UseImageSeq
-                fileList = dir(seqA);
-                fileList = fileList(3:length(fileList));
-                obj.nFrames = length(fileList);
-                if obj.nFrames < 2
-                    error('Wrong inputs directory') ;
-                end
-                fileList = dir(seqB);
-                fileList = fileList(3:length(fileList));
-                if obj.nFrames ~= length(fileList)
-                    error('Input length  doesn"t match') ;
-                end
-                frame = imread([seqB fileList(1).name]);
-            else
-                video = VideoReader(seqA);
-                if hasFrame(video)
-                    frame = readFrame(video);
-                end
-            end
+		
+			fileList = dir(seqA);
+			fileList = fileList(3:length(fileList));
+			obj.nFrames = length(fileList);
+			if obj.nFrames < 2
+				error('Wrong inputs directory') ;
+			end
+			fileList = dir(seqB);
+			fileList = fileList(3:length(fileList));
+			if obj.nFrames ~= length(fileList)
+				error('Input length  doesn"t match') ;
+			end
+			frame = imread([seqB fileList(1).name]);
+		
             [obj.videoHeight, obj.videoWidth, ~] = size(frame);
             [~, obj.meshSize, ~, ~, ~] = size(pathA);
             [~, obj.meshSize, ~, ~, ~] = size(pathB);

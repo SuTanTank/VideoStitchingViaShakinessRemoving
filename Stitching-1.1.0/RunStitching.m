@@ -17,7 +17,6 @@ feval('vl_setup');
 cd ../..;
 
 %% params
-UseImageSeq = 1;
 data = '../case-cuhk_lib/';
 input_A = 'left/';
 input_B = 'right/';
@@ -131,7 +130,7 @@ end
 
 %% Optimize the paths
 tic;
-stitcher = VideoStitch2([data input_A], [data input_B], pathA, pathB, CP, ppf, UseImageSeq, Smoothness, Cropping, Stitchness);
+stitcher = VideoStitch2([data input_A], [data input_B], pathA, pathB, CP, ppf, Smoothness, Cropping, Stitchness);
 stitcher.init();
 SECOND_ROUND = 5; 
 % use it to perform a 2nd phase optimization for more stable output at non-overlapping region
