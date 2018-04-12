@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2036
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SeamCut", "SeamCut.vcxproj", "{F69F8085-C8D2-4524-B40C-2384E4A4F577}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F69F8085-C8D2-4524-B40C-2384E4A4F577}.Debug|x64.ActiveCfg = Debug|x64
+		{F69F8085-C8D2-4524-B40C-2384E4A4F577}.Debug|x64.Build.0 = Debug|x64
+		{F69F8085-C8D2-4524-B40C-2384E4A4F577}.Debug|x86.ActiveCfg = Debug|Win32
+		{F69F8085-C8D2-4524-B40C-2384E4A4F577}.Debug|x86.Build.0 = Debug|Win32
+		{F69F8085-C8D2-4524-B40C-2384E4A4F577}.Release|x64.ActiveCfg = Release|x64
+		{F69F8085-C8D2-4524-B40C-2384E4A4F577}.Release|x64.Build.0 = Release|x64
+		{F69F8085-C8D2-4524-B40C-2384E4A4F577}.Release|x86.ActiveCfg = Release|Win32
+		{F69F8085-C8D2-4524-B40C-2384E4A4F577}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BB3A5944-3A90-441C-A439-BCD7FB8B7236}
+	EndGlobalSection
+EndGlobal
