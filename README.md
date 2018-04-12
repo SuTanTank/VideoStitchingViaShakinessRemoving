@@ -5,6 +5,7 @@ Demo code for the works below:
  - Su, Tan, et al. "[Video stitching for handheld inputs via combined video stabilization](https://dl.acm.org/citation.cfm?id=3005383)." SIGGRAPH ASIA 2016 Technical Briefs. ACM, 2016.
 
 [Video Demo](https://youtu.be/IDzFvqRb40Y) on YouTube:
+
 [![Video Demo](https://img.youtube.com/vi/IDzFvqRb40Y/0.jpg)](https://youtu.be/IDzFvqRb40Y) 
 
 ## Dataset
