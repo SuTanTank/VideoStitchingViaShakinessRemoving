@@ -59,3 +59,4 @@ For more details, please read the comments
 }
  
 Code by Tan Su, Zhensong Zhang and Yongwei Nie. For research purpose ONLY. 
+[![996.icu](https://img.shields.io/badge/link-996.icu-red.svg)](https://996.icu)
