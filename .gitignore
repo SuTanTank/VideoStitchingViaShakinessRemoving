@@ -260,8 +260,8 @@ paket-files/
 __pycache__/
 *.pyc
 
-
 *.png
+*.jpg
 *.mat
 *.asv
 *.jpg
@@ -269,3 +269,5 @@ __pycache__/
 *.mat
 *.dll
 *.exe
+~case-cuhk_lib/
+case*

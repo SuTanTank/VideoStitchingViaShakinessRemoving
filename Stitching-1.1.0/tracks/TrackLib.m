@@ -59,7 +59,7 @@ classdef TrackLib < handle
         
         function [M2, id] = getM(obj, index)
             left = (index - 1) * obj.wSize / 2 + 1;
-            right = left + obj.wSize - 1;
+            right = min(left + obj.wSize - 1, obj.nFrame);
             mid = (left + right) / 2.0;
             sub = obj.points(:, left:right, :) ;
             valid = 1:obj.nTrack;
@@ -123,6 +123,22 @@ classdef TrackLib < handle
                 toc;
             end
             obj.nLabel = nLb;
+        end
+        
+        function addFakeLabel(obj, wSize)
+            obj.setWindowSize(wSize);
+            obj.nWindow = ceil(obj.nFrame / (wSize / 2.0)) - 1;
+            obj.labels = zeros(size(obj.points));
+            obj.nLabel = 1;
+            for windowIndex = 1:obj.nWindow
+                tic;
+                fprintf('window: %d - %d', (windowIndex - 1) * wSize / 2 + 1, (windowIndex - 1) * wSize / 2 + wSize);
+                left = (windowIndex - 1) * wSize / 2 + 1;
+                [~, trackID] = obj.getM(windowIndex);
+                obj.labels(trackID, left:left + wSize / 2 - 1, 2) = 1;
+                obj.labels(trackID, left + wSize / 2:left + wSize - 1, 1) = 1;
+                toc;
+            end
         end
         
         function refineLabel(obj, merge)

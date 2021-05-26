@@ -4,10 +4,10 @@ if ~exist('left', 'dir')
 end
 k = 0;
 while hasFrame(video)
-    k = k + 1;    
+    k = k + 1;
     frame = readFrame(video);
-    filename = ['./left/' sprintf('%03d',k) '.png'];
-    imwrite(frame, filename);    
+    filename = ['./left/' sprintf('%03d',k) '.jpg'];
+    imwrite(frame, filename);
 end
 video = VideoReader('./case17-r.mp4');
 if ~exist('right', 'dir')
@@ -17,6 +17,6 @@ k = 0;
 while hasFrame(video)
     k = k + 1;
     frame = readFrame(video);
-    filename = ['./right/' sprintf('%03d',k) '.png'];
-    imwrite(frame, filename);    
+    filename = ['./right/' sprintf('%03d',k) '.jpg'];
+    imwrite(frame, filename);
 end

@@ -42,7 +42,7 @@ Mat FillHoles(const Mat& src)
 	//assume input is uint8 B & W (0 or 1)
 	//this function imitates imfill(image,'hole')
 	Mat src1 = src.clone();
-	
+
 	Mat dst = Mat::zeros(src.rows, src.cols, CV_8UC1);
 
 	std::vector<std::vector<Point> > contours;
@@ -64,7 +64,7 @@ Mat FindBoundaries(Mat src)
 	erode(src1, eroded,Mat());
 	absdiff(src1, eroded, dst);
 
-	return dst;	
+	return dst;
 }
 
 void process_err(char *errInfo)
@@ -87,11 +87,11 @@ void findSeamAndBlend(int stable, int start, int end, int ab, float scale)
 	Mat edge0, edge1;
 	Mat A0sMask, B0sMask, A1sMask, B1sMask;
 
-	sprintf(filename, "%s/A%d.png", srcFolder, start);
+	sprintf(filename, "%s/A%d.jpg", srcFolder, start);
 	A1 = imread(filename);
 	resize(A1, A1s, Size(), scale, scale);
 	getEdgeMap(50, A1s, A1e);
-	sprintf(filename, "%s/B%d.png", srcFolder, start);
+	sprintf(filename, "%s/B%d.jpg", srcFolder, start);
 	B1 = imread(filename);
 	resize(B1, B1s, Size(), scale, scale);
 	getEdgeMap(50, B1s, B1e);
@@ -128,11 +128,11 @@ void findSeamAndBlend(int stable, int start, int end, int ab, float scale)
 		A0sMask = A1sMask;
 		B0sMask = B1sMask;
 
-		sprintf(filename, "%s/A%d.png", srcFolder, frameIndex + 1);
+		sprintf(filename, "%s/A%d.jpg", srcFolder, frameIndex + 1);
 		A1 = imread(filename);
 		resize(A1, A1s, Size(), scale, scale);
 		getEdgeMap(50, A1s, A1e);
-		sprintf(filename, "%s/B%d.png", srcFolder, frameIndex + 1);
+		sprintf(filename, "%s/B%d.jpg", srcFolder, frameIndex + 1);
 		B1 = imread(filename);
 		resize(B1, B1s, Size(), scale, scale);
 		getEdgeMap(50, B1s, B1e);
@@ -150,15 +150,15 @@ void findSeamAndBlend(int stable, int start, int end, int ab, float scale)
 		Mat imgAll = Mat::zeros(A0sMask.size(), CV_8UC1);
 		bitwise_or(A0sMask, B0sMask, imgAll);
 
-		//imwrite("D:/test.png", imgAll);
+		//imwrite("D:/test.jpg", imgAll);
 
 
 		edge0 = A0e + B0e;
 		edge1 = A1e + B1e;
 
-		//sprintf_s(filename, "%s/edge0.png", tmpFolder);
+		//sprintf_s(filename, "%s/edge0.jpg", tmpFolder);
 		//imwrite(filename, edge0);
-		//sprintf_s(filename, "%s/edge1.png", tmpFolder);
+		//sprintf_s(filename, "%s/edge1.jpg", tmpFolder);
 		//imwrite(filename, edge1);
 
 
@@ -208,7 +208,7 @@ void findSeamAndBlend(int stable, int start, int end, int ab, float scale)
 							g.add_tweights(idx0, 0, INT_MAX);
 						}
 					}
-					
+
 				}
 			}
 		}
@@ -258,7 +258,7 @@ void findSeamAndBlend(int stable, int start, int end, int ab, float scale)
 				}
 
 				// Add back edge
-				//norm(a0, b1) + norm(a1, b0) + 
+				//norm(a0, b1) + norm(a1, b0) +
 				double cap3 = weight * (norm(a0, a1) + A0e.at<uchar>(y, x) + norm(b0, b1) + B0e.at<uchar>(y, x) + norm(a0, b1) + A1e.at<uchar>(y, x) + norm(a1, b0) + B1e.at<uchar>(y, x)) * 0.01;
 				g.add_edge(idx0, idx1, (int)(weight * (norm(a0, b1) + A0e.at<uchar>(y, x) + B1e.at<uchar>(y, x)) * 0.02 * stable), (int)(weight * (norm(a1, b0) + A1e.at<uchar>(y, x) + B0e.at<uchar>(y, x)) * 0.02 * stable));
 
@@ -269,14 +269,14 @@ void findSeamAndBlend(int stable, int start, int end, int ab, float scale)
 		std::cout << frameIndex << "\tmax flow: " << flow << endl;
 
 
-		
+
 
 		graphcut = A0.clone();
 		halfA = A0.clone();
 		halfB = B0.clone();
 		halfA_mask = Mat::zeros(A0.rows, A0.cols, CV_8U);
 		halfB_mask = halfA_mask.clone();
-		
+
 		namedWindow("Result", WINDOW_AUTOSIZE);
 
 		if (frameIndex == start)
@@ -315,15 +315,15 @@ void findSeamAndBlend(int stable, int start, int end, int ab, float scale)
 					}
 				}
 			}
-			//sprintf(filename, "%s/C%d.png", trgFolder, frameIndex);
+			//sprintf(filename, "%s/C%d.jpg", trgFolder, frameIndex);
 			//imwrite(filename, graphcut);
-			sprintf(filename, "%s/C%dA.png", trgFolder, frameIndex);
+			sprintf(filename, "%s/C%dA.jpg", trgFolder, frameIndex);
 			imwrite(filename, halfA);
-			sprintf(filename, "%s/C%dB.png", trgFolder, frameIndex);
+			sprintf(filename, "%s/C%dB.jpg", trgFolder, frameIndex);
 			imwrite(filename, halfB);
-			/*sprintf(filename, "../C%dA_m.png", frameIndex);
+			/*sprintf(filename, "../C%dA_m.jpg", frameIndex);
 			imwrite(filename, halfA_mask);
-			sprintf(filename, "../C%dB_m.png", frameIndex);
+			sprintf(filename, "../C%dB_m.jpg", frameIndex);
 			imwrite(filename, halfB_mask);*/
 			Ptr<detail::Blender> blender;
 			blender = detail::Blender::createDefault(detail::Blender::MULTI_BAND, true);
@@ -335,7 +335,7 @@ void findSeamAndBlend(int stable, int start, int end, int ab, float scale)
 			Mat res, res_mask;
 			blender->blend(res, res_mask);
 			res.convertTo(res, CV_8UC3);
-			std::sprintf(filename, "%s/D%d.png", trgFolder, frameIndex);
+			std::sprintf(filename, "%s/D%d.jpg", trgFolder, frameIndex);
 			imwrite(filename, res);
 			imshow("result", res); waitKey(1);
 		}
@@ -371,19 +371,19 @@ void findSeamAndBlend(int stable, int start, int end, int ab, float scale)
 				}
 			}
 		}
-		//sprintf(filename, "%s/mask%d.png", trgFolder, frameIndex);
+		//sprintf(filename, "%s/mask%d.jpg", trgFolder, frameIndex);
 		//imwrite(filename, saveMask);
 
 
-		//sprintf(filename, "%s/C%d.png", trgFolder, frameIndex + 1);
+		//sprintf(filename, "%s/C%d.jpg", trgFolder, frameIndex + 1);
 		//imwrite(filename, graphcut);
-		sprintf(filename, "%s/C%dA.png", trgFolder, frameIndex + 1);
+		sprintf(filename, "%s/C%dA.jpg", trgFolder, frameIndex + 1);
 		imwrite(filename, halfA);
-		sprintf(filename, "%s/C%dB.png", trgFolder, frameIndex + 1);
+		sprintf(filename, "%s/C%dB.jpg", trgFolder, frameIndex + 1);
 		imwrite(filename, halfB);
-		//sprintf(filename, "../C%dA_m.png", frameIndex + 1);
+		//sprintf(filename, "../C%dA_m.jpg", frameIndex + 1);
 		//imwrite(filename, halfA_mask);
-		//sprintf(filename, "../C%dB_m.png", frameIndex + 1);
+		//sprintf(filename, "../C%dB_m.jpg", frameIndex + 1);
 		//imwrite(filename, halfB_mask);
 		Ptr<detail::Blender> blender;
 		blender = detail::Blender::createDefault(detail::Blender::MULTI_BAND, true);
@@ -395,7 +395,7 @@ void findSeamAndBlend(int stable, int start, int end, int ab, float scale)
 		Mat res, res_mask;
 		blender->blend(res, res_mask);
 		res.convertTo(res, CV_8UC3);
-		sprintf(filename, "%s/D%d.png", trgFolder, frameIndex + 1);
+		sprintf(filename, "%s/D%d.jpg", trgFolder, frameIndex + 1);
 		imwrite(filename, res);
 		cv::imshow("result", res); waitKey(1);
 	}
@@ -418,5 +418,5 @@ int main(int argc, char **argv)
 		cout << "Usage: ./SeamCut [1-5] start end [01] scale" << endl;
 	}
 	return 0;
-	
+
 }

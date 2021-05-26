@@ -1,6 +1,4 @@
 function [Path, graph, goodA, goodB] = GetGraph( trackA, trackB, CP, ppf, alpha, beta)
-%UNTITLED2 Summary of this function goes here
-%   Detailed explanation goes here
     nWindow = trackA.nWindow;
     nLabel = trackA.nLabel;
     videoH = trackA.videoHeight;
@@ -82,6 +80,9 @@ function [Path, graph, goodA, goodB] = GetGraph( trackA, trackB, CP, ppf, alpha,
             deltaEdges = zeros(wSize, nLabel, nLabel);
             for fIndex = 1:wSize
                 frameIndex = left + fIndex - 1;
+                if (frameIndex > trackA.nFrame || frameIndex > trackB.nFrame) 
+                   break;
+                end
                 labelMasks = zeros(videoH, videoW, nLabel, 2);
                 fprintf('%4d', frameIndex);
                 if frameIndex < left + wSize / 2

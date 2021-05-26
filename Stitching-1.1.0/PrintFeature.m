@@ -25,8 +25,8 @@ function PrintFeature( input_A, input_B, all, back, outPath)
         if ~exist(outPath, 'dir')
             mkdir(outPath);
         end
-        imwrite(IA, [outPath '/A' int2str(frameIndex) '.png']);
-        imwrite(IB, [outPath '/B' int2str(frameIndex) '.png']);
+        imwrite(IA, [outPath '/A' int2str(frameIndex) '.jpg']);
+        imwrite(IB, [outPath '/B' int2str(frameIndex) '.jpg']);
     end
 end
 

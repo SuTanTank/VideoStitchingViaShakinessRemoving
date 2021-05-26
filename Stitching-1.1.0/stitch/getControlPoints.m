@@ -4,10 +4,7 @@ function [CP, ppf] = getControlPoints( input_A, input_B, maxppf )
     fileListA = fileListA(3:length(fileListA));
     fileListB = dir(input_B);
     fileListB = fileListB(3:length(fileListB));
-    nFrames = length(fileListA);
-    if nFrames ~= length(fileListB)
-        error('wrong inputs');
-    end
+    nFrames = min(length(fileListA), length(fileListB))
     CP = zeros(nFrames, maxppf, 4);
     ppf = zeros(nFrames, 1);
     trackerA = vision.PointTracker('MaxBidirectionalError', 1);
