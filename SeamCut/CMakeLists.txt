@@ -1,0 +1,6 @@
+cmake_minimum_required(VERSION 3.6)
+project(SeamCut CXX)
+find_package(OpenCV REQUIRED)
+file(GLOB_RECURSE SRC "*.cpp" "*.h")
+add_executable(SeamCut ${SRC})
+target_link_libraries(SeamCut PUBLIC ${OpenCV_LIBS})
