@@ -271,3 +271,4 @@ __pycache__/
 *.exe
 ~case-cuhk_lib/
 case*
+build

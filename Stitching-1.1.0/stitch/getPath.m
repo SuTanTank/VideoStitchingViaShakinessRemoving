@@ -12,7 +12,7 @@ function [ path ] = getPath( input, MeshSize, tracks, backList)
     
     fileList = dir(input);
     fileList = fileList(3:length(fileList));
-    nFrames = length(fileList);
+    nFrames = tracks.nFrame;
     if nFrames < 2
         error('Wrong inputs') ;
     end
@@ -23,7 +23,7 @@ function [ path ] = getPath( input, MeshSize, tracks, backList)
         end
     end
     fprintf('%5d', 1);
-    for frameIndex = 2:length(fileList)
+    for frameIndex = 2:nFrames
         fprintf('%5d', frameIndex);
         if mod(frameIndex, 20) == 0
             fprintf('\n') ;

@@ -25,12 +25,13 @@ PointsPerFrame = 500; % # of feature correspondences in a frame
 TracksPerFrame = 600; % # of trajectories in a frame
 TrackWindowSize = 40; % the window size for motion segmentation
 % ---------------
-MeshSize = 8; % The mesh size of bundled camera path, 5 - 10 is OK
-MaxIte = 15; % Number of iterations of the optimization scheme, 10 - 15 is OK
-Smoothness = 1; % adjust how stable the output is, 0.5 - 3 is OK
-Cropping = 1; % adjust how similar the result to the original video, usually set to 1;
-Stitchness = 20; % adjust the weight of stitching term, 10 - 30 is OK
+MeshSize = 8;                        % The mesh size of bundled camera path, 5 - 10 is OK
+MaxIte = 15;                         % Number of iterations of the optimization scheme, 10 - 15 is OK
+Smoothness = 3;                      % adjust how stable the output is, 1 - 4 is OK
+Cropping = 1;                        % adjust how similar the result to the original video, usually set to 1;
+Stitchness = 20;                     % adjust the weight of stitching term, 10 - 30 is OK
 SKIP_BACKGROUND_SEGMENTATION = true; % skip the background segmentation - treat all tracks as background.
+RANSAC = true;                       % use RANSAC to remove wrong sparse correspondences, set to true if overlap is small and stitch fails. 
 % ---------------
 OutputPadding = 500; % the padding around the video
 OutputPath = 'res_demo'; % the directory to store the output frames, auto create it if not exist
@@ -90,7 +91,7 @@ end
 %% Matching SIFT in every frame pair
 tic;
 if ~exist([data 'ControlPoints' int2str(PointsPerFrame) '.mat'], 'file')
-    [CP, ppf] = getControlPoints([data input_A], [data input_B], 500);
+    [CP, ppf] = getControlPoints([data input_A], [data input_B], PointsPerFrame, RANSAC);
     save([data 'ControlPoints' int2str(PointsPerFrame) '.mat'], 'CP', 'ppf');
 else
     load([data 'ControlPoints' int2str(PointsPerFrame) '.mat']);

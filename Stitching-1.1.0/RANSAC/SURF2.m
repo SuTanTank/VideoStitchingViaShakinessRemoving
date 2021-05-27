@@ -51,7 +51,7 @@ function [f, vpts] = getSURFFeatures(I)
                 threshold = threshold - 10;                    
                 pNew = detectSURFFeatures(I, 'ROI', roi, 'MetricThreshold', threshold); 
             end
-            while nMore * 2 < size(pNew, 1) && threshold < 200;
+            while nMore * 2 < size(pNew, 1) && threshold < 200
                 threshold = threshold + 20;                    
                 pNew = detectSURFFeatures(I, 'ROI', roi, 'MetricThreshold', threshold);                     
             end
